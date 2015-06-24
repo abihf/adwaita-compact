@@ -94,10 +94,10 @@ StScrollBar {
 
   StButton#vhandle, StButton#hhandle {
     border-radius: 8px;
-    background-color: $bg_color;
+    background-color: mix($fg_color, $bg_color, 60%);
     //border: 3px solid transparent; //would be nice to margin or at least to transparent
     margin: 3px;
-    &:hover { background-color: lighten($bg_color,10%); }
+    &:hover { background-color: mix($fg_color, $bg_color, 80%); }
     &:active { background-color: $selected_bg_color; }
   }
 }
@@ -555,11 +555,10 @@ StScrollBar {
 
   .switcher-arrow {
     border-color: rgba(0,0,0,0);
-    color: $borders_color;
-  }
-
-  .switcher-arrow:highlighted {
-    color: $fg_color;
+    color: transparentize($fg_color,0.2);
+    &:highlighted {
+      color: $fg_color;
+    }
   }
 
   .input-source-switcher-symbol {
@@ -826,7 +825,6 @@ StScrollBar {
         border: 1px solid transparentize($borders_color,0.5);
       }
       .calendar-day-with-events {
-        //color: darken($fg_color,5%);
         color: lighten($fg_color,10%);
         font-weight: bold;
         background-image: url("resource:///org/gnome/shell/theme/calendar-today.svg");

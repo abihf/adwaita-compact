@@ -379,6 +379,7 @@ GtkTextView { // This will get overridden by .view, needed by gedit line numbers
     &:insensitive { @include entry(osd-insensitive); }
   }
 }
+
 /***********
  * Buttons *
  ***********/
@@ -813,9 +814,12 @@ $_button_padding: 3px 5px;
   }
 }
 
+
 GtkColorButton.button {
   padding: 5px; // Uniform padding on the GtkColorButton
-  GtkColorSwatch {
+
+  GtkColorSwatch:first-child:last-child { // :first-child:last-child for a specificity bump, it gets overridden by the
+                                          // colorpicker style, otherwise
     border-radius: 0;
     box-shadow: inset 0 1px 1px transparentize(black, 0.9),
                 _widget_edge();
@@ -1147,12 +1151,14 @@ GtkComboBox {
 
   .title {
     font-weight: bold;
-    padding: 0px 12px;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 
   .subtitle {
     font-size: smaller;
-    padding: 0 12px;
+    padding-left: 12px;
+    padding-right: 12px;
     @extend .dim-label;
   }
 
@@ -1894,7 +1900,7 @@ column-header.button.dnd { // for treeview-like derive widgets
 
   &.overlay-indicator {
     &:not(.dragging):not(.hovering) { // Overlay scrolling indicator
-      opacity: 0.3;
+      opacity: 0.4;
 
       -GtkRange-slider-width: 5px;
 
@@ -1940,9 +1946,9 @@ column-header.button.dnd { // for treeview-like derive widgets
 
   // slider coloring
   .slider {
-    background-color: mix($fg_color, $bg_color, 40%);
+    background-color: mix($fg_color, $bg_color, 60%);
 
-    &:hover { background-color: mix($fg_color, $bg_color, 60%); }
+    &:hover { background-color: mix($fg_color, $bg_color, 80%); }
 
     &:prelight:active { background-color: if($variant=='light', darken($selected_bg_color, 10%), lighten($selected_bg_color, 10%));}
 
@@ -2631,6 +2637,7 @@ GtkScrolledWindow {
   &:active {
     box-shadow: inset 0 2px 2px -2px transparentize(black, 0.8);
   }
+  &:backdrop:hover { background-color: transparent; }
   &:selected {
     &:active { box-shadow: inset 0 2px 3px -1px transparentize(black, 0.5); }
     &:hover {
@@ -2638,7 +2645,6 @@ GtkScrolledWindow {
     }
     &:backdrop { background-color: $selected_bg_color; }
   }
-  &:backdrop:hover { background-color: transparent; }
 }
 
 .list-row:selected {
@@ -2942,10 +2948,22 @@ GtkPlacesSidebar.sidebar .view {
       &:backdrop { color: mix($backdrop_selected_fg_color, $selected_bg_color, 90%); }
     }
 
-    &:backdrop { color: mix($backdrop_fg_color, $sidebar_bg_color, 70%); }
+    &:insensitive { color: mix($insensitive_fg_color, $sidebar_bg_color, 70%); }
+
+    &:backdrop {
+      color: mix($backdrop_fg_color, $sidebar_bg_color, 70%);
+
+      &:insensitive { color: mix($backdrop_insensitive_color, $sidebar_bg_color, 70%); }
+    }
   }
 
-  &:backdrop { color: $backdrop_fg_color; }
+  &:insensitive { color: $insensitive_fg_color; }
+
+  &:backdrop {
+    color: $backdrop_fg_color;
+
+    &:insensitive { color: $backdrop_insensitive_color; }
+  }
 
   &:selected {
     @extend %selected_items;
@@ -3081,10 +3099,12 @@ GtkInfoBar {
 
 GtkColorSwatch {
   // This widget is made of two boxes one on top of the other, the lower box is GtkColorSwatch {} the other one
-  // is GtkColorSwatch .overlay {}, GtkColorSwatch has the programmatically set background, so most of the style
+  // is GtkColorSwatch > .overlay {}, GtkColorSwatch has the programmatically set background, so most of the style
   // is applied to the overlay box.
 
   $_colorswatch_shadow: inset 0 1px transparentize(black, 0.9), _widget_edge();
+
+  $_colorswatch_radius: 5px;
 
   box-shadow: $_colorswatch_shadow;
 
@@ -3099,27 +3119,48 @@ GtkColorSwatch {
   // we need to re-set the shadow here since it get axed by the previous bit
   &:selected { box-shadow: $_colorswatch_shadow; }
 
-  // border rounding
+  // base color corners rounding
+  // to avoid the artifacts caused by rounded corner anti-aliasing the base color
+  // sports a bigger radius.
+  // nth-child is needed by the custom color strip.
+  // The :not() madness is needed since actually the overlay is selectable by GtkColorSwatch > .overlay
+  // and GtkColorSwatch.overlay, I know it's weird, but this is gtk+, not a browser.
   &.top {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-top-left-radius: $_colorswatch-radius + 1px;
+    border-top-right-radius: $_colorswatch-radius + 1px;
   }
   &.bottom {
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: $_colorswatch-radius + 1px;
+    border-bottom-right-radius: $_colorswatch-radius + 1px;
   }
-  &.left, &:first-child, &:first-child .overlay {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+  &.left, &:first-child:not(.overlay):not(.top) {
+    border-top-left-radius: $_colorswatch-radius + 1px;
+    border-bottom-left-radius: $_colorswatch-radius + 1px;
   }
-  &.right, &:last-child, &:last-child .overlay {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+  &.right, &:last-child:not(.overlay):not(.bottom) {
+    border-top-right-radius: $_colorswatch-radius + 1px;
+    border-bottom-right-radius: $_colorswatch-radius + 1px;
   }
-  &:only-child, &:only-child .overlay {
-    border-radius: 5px;
+  &:only-child:not(.overlay) { border-radius: $_colorswatch-radius + 1px; }
+
+  // overlay corner rounding
+  &.top > .overlay {
+    border-top-left-radius: $_colorswatch-radius;
+    border-top-right-radius: $_colorswatch-radius;
   }
-  // nth-child works just on the custom colors row
+  &.bottom > .overlay {
+    border-bottom-left-radius: $_colorswatch-radius;
+    border-bottom-right-radius: $_colorswatch-radius;
+  }
+  &:first-child:not(.top) > .overlay {
+    border-top-left-radius: $_colorswatch-radius;
+    border-bottom-left-radius: $_colorswatch-radius;
+  }
+  &:last-child:not(.bottom) > .overlay {
+    border-top-right-radius: $_colorswatch-radius;
+    border-bottom-right-radius: $_colorswatch-radius;
+  }
+  &:only-child > .overlay { border-radius: $_colorswatch-radius; }
 
   // hover effect
   &:hover,
@@ -3128,9 +3169,15 @@ GtkColorSwatch {
                                               transparentize(white, 1) 50%);
     box-shadow: inset 0 1px transparentize(white, 0.6),
                 inset 0 -1px if($variant == 'light', transparentize(black, 0.9), transparentize(black, 0.6));
+    &.color-dark { // swatches with colors with luminosity lower than 50% get the color-dark class
+      background-image: linear-gradient(135deg, transparentize(white, 0.5),
+                                                transparentize(white, 1) 50%);
+    }
   }
   &:backdrop,
-  &:backdrop:selected {
+  &:backdrop:selected
+  &.color-dark:backdrop,
+  &.color-dark:backdrop:selected {
     background-image: none;
     box-shadow: none;
   }
@@ -3145,7 +3192,7 @@ GtkColorSwatch {
     &:backdrop { box-shadow: none; }
   }
 
-  // indicator and keynav outline colors, color-dark is a color with luminosity lower then 50%
+  // indicator and keynav outline colors
   &.color-dark {
     color: white;
     outline-color: transparentize(black, 0.7);
@@ -3331,7 +3378,7 @@ GtkVolumeButton.button { padding: 8px; }
 }
 
 // Overflow indication, works similarly to the overshoot, the size if fixed tho.
-.undershoot { 
+.undershoot {
   &.top {
     @include undershoot(top);
   }
@@ -3348,4 +3395,3 @@ GtkVolumeButton.button { padding: 8px; }
     @include undershoot(right);
   }
 }
-
