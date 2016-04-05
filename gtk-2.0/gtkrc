@@ -2221,7 +2221,6 @@ style "gimp_toolbox_frame"
 
 style "toolbar"
 {
-        # bg[NORMAL]		= shade(0.90, @bg_color)
         engine "pixmap"
 	{
         image
@@ -2230,15 +2229,15 @@ style "toolbar"
         }
         }
         
-	engine "murrine" {
-		separatorstyle          = 0
-		lightborderstyle        = 0
-		contrast                = 0.9       # Regula el contraste del borde inferior de la toolbar
-		lightborder_shade		= 1.0       # Regula el contraste del borde de la toolbar
-		# contrast                = 1.1       # Regula el contraste del borde inferior de la toolbar
-		# lightborder_shade		= 1.0       # Regula el contraste del borde de la toolbar
-                gradient_shades     	= {1.00,0.98,0.98,0.95}
-	}
+	#engine "murrine" {
+	#	separatorstyle          = 0
+	#	lightborderstyle        = 0
+	#	contrast                = 0.9       # Regula el contraste del borde inferior de la toolbar
+	#	lightborder_shade		= 1.0       # Regula el contraste del borde de la toolbar
+	#	# contrast                = 1.1       # Regula el contraste del borde inferior de la toolbar
+	#	# lightborder_shade		= 1.0       # Regula el contraste del borde de la toolbar
+        #       gradient_shades     	= {1.00,0.98,0.98,0.95}
+	#}
 }
 
 style "inline_toolbar"
