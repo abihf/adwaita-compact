@@ -19,8 +19,8 @@
  */
 /* GLOBALS */
 stage {
-  font-family: Ubuntu, Sans-Serif;
-  font-size: 9pt;
+  font-family: Noto Sans, Sans-Serif;
+  font-size: 10.5pt;
   color: #eeeeec; }
 
 /* WIDGETS */
@@ -627,7 +627,7 @@ StScrollBar {
 
 /* TOP BAR */
 #panel {
-  background-color: rgba(46, 52, 54, 0.6);
+  background-color: rgb(0, 0, 0);
   font-weight: bold;
   height: 1.86em;
   text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 2px;
