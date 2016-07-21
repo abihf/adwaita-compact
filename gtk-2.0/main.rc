@@ -1502,7 +1502,7 @@ style "menubar" {
 style "menubar_item" {
 
   xthickness = 3
-  ythickness = 4
+  ythickness = 3
 
   fg[PRELIGHT] = shade(0.9, @selected_bg_color)
 
@@ -1532,7 +1532,7 @@ style "menu" {
 style "menu_item" {
 
   xthickness = 3
-  ythickness = 4
+  ythickness = 3
 
   bg[PRELIGHT]   = @selected_bg_color
   # Chromium uses this setting
