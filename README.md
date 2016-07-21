@@ -6,7 +6,8 @@ This theme is for gnome 3.20 only.
 ## Download
  * [Adwaita Compact](https://github.com/polter-rnd/adwaita-compact/archive/master.zip)
 
-   > base theme :  
+Base theme:
+
    > gtk3: https://git.gnome.org/browse/gtk+/tree/gtk/theme/Adwaita/?h=gtk-3-20  
    > gtk2: https://git.gnome.org/browse/gnome-themes-standard/tree/themes/Adwaita  
    > gnome-shell: https://git.gnome.org/browse/gnome-shell-sass/
