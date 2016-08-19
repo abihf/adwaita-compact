@@ -27,8 +27,8 @@ $panel-corner-radius: 0;
 
 
 /* GLOBALS */
-$font-size: 9;
-$font-family: Ubuntu, Sans-Serif;
+$font-size: 10;
+$font-family: Cantarell, Sans-Serif;
 $_bubble_bg_color: opacify($osd_bg_color,0.25);
 $_bubble_fg_color: $osd_fg_color;
 $_bubble_borders_color: transparentize($osd_fg_color,0.8);
@@ -706,7 +706,7 @@ StScrollBar {
 /* TOP BAR */
 
 #panel {
-  background-color: rgba(46, 52, 54, 0.6);
+  background-color: black;
   font-weight: bold;
   height: 1.86em;
   text-shadow: rgba(0 ,0 ,0 ,0.5) 0px 0px 2px;
