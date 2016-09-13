@@ -20,7 +20,7 @@
 /* GLOBALS */
 stage {
   font-family: Cantarell, Sans-Serif;
-  font-size: 10pt;
+  font-size: 9pt;
   color: #eeeeec; }
 
 /* WIDGETS */
@@ -211,7 +211,7 @@ StScrollBar {
   .modal-dialog .run-dialog-button-box {
     padding-top: 1em; }
   .modal-dialog .run-dialog-label {
-    font-size: 11pt;
+    font-size: 10pt;
     font-weight: bold;
     color: #d6d6d1;
     padding-bottom: .4em; }
@@ -219,7 +219,7 @@ StScrollBar {
 .show-processes-dialog-subject,
 .mount-question-dialog-subject,
 .end-session-dialog-subject {
-  font-size: 13pt; }
+  font-size: 12pt; }
 
 /* End Session Dialog */
 .end-session-dialog {
@@ -427,6 +427,29 @@ StScrollBar {
 .audio-selection-device-icon {
   icon-size: 64px; }
 
+/* Access Dialog */
+.access-dialog {
+  spacing: 30px; }
+
+.access-dialog-main-layout {
+  padding: 12px 20px 0;
+  spacing: 12px; }
+
+.access-dialog-content {
+  max-width: 28em;
+  spacing: 20px; }
+
+.access-dialog-icon {
+  min-width: 48px;
+  icon-size: 48px; }
+
+.access-dialog-title {
+  font-weight: bold; }
+
+.access-dialog-subtitle {
+  color: #8e8e80;
+  font-weight: bold; }
+
 /* Geolocation Dialog */
 .geolocation-dialog {
   spacing: 30px; }
@@ -535,6 +558,9 @@ StScrollBar {
     border-radius: 0.3em;
     background-color: rgba(11, 12, 13, 0.5);
     color: #eeeeec; }
+  .osd-window .level-bar {
+    background-color: #eeeeec;
+    border-radius: 0.3em; }
 
 /* App Switcher */
 .switcher-popup {
@@ -577,6 +603,10 @@ StScrollBar {
   font-size: 34pt;
   width: 96px;
   height: 96px; }
+
+/* Window Cycler */
+.cycler-highlight {
+  border: 5px solid #215d9c; }
 
 /* Workspace Switcher */
 .workspace-switcher-group {

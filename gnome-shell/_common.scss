@@ -27,7 +27,7 @@ $panel-corner-radius: 0;
 
 
 /* GLOBALS */
-$font-size: 10;
+$font-size: 9;
 $font-family: Cantarell, Sans-Serif;
 $_bubble_bg_color: opacify($osd_bg_color,0.25);
 $_bubble_fg_color: $osd_fg_color;
@@ -457,6 +457,35 @@ StScrollBar {
     icon-size: 64px;
   }
 
+/* Access Dialog */
+.access-dialog {
+  spacing: 30px;
+}
+
+  .access-dialog-main-layout {
+    padding: 12px 20px 0;
+    spacing: 12px;
+  }
+
+  .access-dialog-content {
+    max-width: 28em;
+    spacing: 20px;
+  }
+
+  .access-dialog-icon {
+    min-width: 48px;
+    icon-size: 48px;
+  }
+
+  .access-dialog-title {
+    font-weight: bold;
+  }
+
+  .access-dialog-subtitle {
+    color: darken($fg_color,40%);
+    font-weight: bold;
+  }
+
 /* Geolocation Dialog */
 .geolocation-dialog {
   spacing: 30px;
@@ -587,6 +616,10 @@ StScrollBar {
     background-color: transparentize(darken($osd_bg_color,15%),0.5);
     color: $osd_fg_color;
   }
+  .level-bar {
+    background-color: $osd_fg_color;
+    border-radius: 0.3em;
+  }
 }
 
 /* App Switcher */
@@ -645,6 +678,9 @@ StScrollBar {
     width: 96px;
     height: 96px;
   }
+
+/* Window Cycler */
+.cycler-highlight { border: 5px solid $selected_bg_color; }
 
 /* Workspace Switcher */
 .workspace-switcher-group { padding: 12px; }
@@ -751,6 +787,7 @@ StScrollBar {
       -st-icon-style: symbolic;
       margin-left: 4px;
       margin-right: 4px;
+      //dimensions of the icon are hardcoded
     }
 
     &:hover {
