@@ -20,7 +20,7 @@
 /* GLOBALS */
 stage {
   font-family: Cantarell, Sans-Serif;
-  font-size: 9pt;
+  font-size: 11pt;
   color: #eeeeec; }
 
 /* WIDGETS */
@@ -211,7 +211,7 @@ StScrollBar {
   .modal-dialog .run-dialog-button-box {
     padding-top: 1em; }
   .modal-dialog .run-dialog-label {
-    font-size: 11pt;
+    font-size: 10pt;
     font-weight: bold;
     color: #d6d6d1;
     padding-bottom: .4em; }
@@ -219,7 +219,7 @@ StScrollBar {
 .show-processes-dialog-subject,
 .mount-question-dialog-subject,
 .end-session-dialog-subject {
-  font-size: 13pt; }
+  font-size: 12pt; }
 
 /* End Session Dialog */
 .end-session-dialog {
