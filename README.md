@@ -7,7 +7,7 @@ Reduce ugly padding from gnome default theme, Adwaita, to make it more compact a
 ![alt text](preview-3.png "Preview 3")
 
 ## Download
- * [3.22.2](https://github.com/polter-rnd/adwaita-compact/archive/v3.22.2.tar.gz)
+ * [3.22.0](https://github.com/polter-rnd/adwaita-compact/archive/v3.22.0.tar.gz)
  * [3.20.9.1](https://github.com/abihf/adwaita-compact/archive/v3.20.9.1.tar.gz)
  * [3.20.0.1](https://github.com/abihf/adwaita-compact/archive/v3.20.0.1.tar.gz)
  * [3.16.2.1](https://github.com/abihf/adwaita-compact/archive/3.16.2.1.tar.gz)
