@@ -622,6 +622,19 @@ StScrollBar {
   }
 }
 
+/* Pad OSD */
+.pad-osd-window {
+    padding: 32px;
+    background-color: transparentize(black, 0.2);
+
+  .pad-osd-title-box { spacing: 12px; }
+  .pad-osd-title-menu-box { spacing: 6px; }
+}
+
+.combo-box-label {
+    width: 15em;
+}
+
 /* App Switcher */
 .switcher-popup {
   padding: 8px;
@@ -846,10 +859,18 @@ StScrollBar {
 
     .datemenu-calendar-column { spacing: 0.5em; }
     .datemenu-displays-section { padding-bottom: 3em; }
+    .datemenu-displays-box { spacing: 1em; }
+
+    .datemenu-calendar-column {
+      border: 0 solid lighten($bg_color,5%);
+      &:ltr { border-left-width: 1px; }
+      &:rtl { border-right-width: 1px; }
+    }
 
     .datemenu-today-button,
     .world-clocks-button,
-    .message-list-section-title {
+    .weather-button,
+    .events-section-title {
       border-radius: 4px;
       padding: .4em;
     }
@@ -864,7 +885,8 @@ StScrollBar {
 
     .datemenu-today-button,
     .world-clocks-button,
-    .message-list-section-title {
+    .weather-button,
+    .events-section-title {
       &:hover,&:focus { background-color: lighten($bg_color,5%); }
       &:active {
         color: lighten($selected_fg_color,5%);
@@ -880,13 +902,18 @@ StScrollBar {
     }
 
     .world-clocks-header,
-    .message-list-section-title {
+    .weather-header,
+    .events-section-title {
       color: darken($fg_color,40%);
       font-weight: bold;
     }
 
     .world-clocks-grid {
       spacing-rows: 0.4em;
+    }
+
+    .weather-box {
+      spacing: 0.4em;
     }
 
     .calendar-month-label {
@@ -975,35 +1002,23 @@ StScrollBar {
         width: 31.5em;
       }
 
+        .message-list-clear-button.button {
+          background-color: transparent;
+          &:hover,&:focus { background-color: lighten($bg_color,5%); }
+          margin: 1.5em 1.5em 0;
+        }
+
         .message-list-sections {
           spacing: 1.5em;
         }
 
         .message-list-section,
         .message-list-section-list {
-          spacing: 0.7em;
-        }
-
-        .message-list-section-title-box {
           spacing: 0.4em;
         }
 
-        .message-list-section-close > StIcon {
-          icon-size: 16px;
-          border-radius: 8px;
-          color: $bg_color;
-          background-color: darken($fg_color,60%);
-        }
-
-        /* FIXME: how do you do this in sass? */
-        .message-list-section-close:hover > StIcon,
-        .message-list-section-close:focus > StIcon {
-          background-color: darken($fg_color,40%);
-        }
-
         .message {
-          background-color: lighten($bg_color,5%);
-          &:hover,&:focus { background-color: lighten($bg_color,15%); }
+          &:hover,&:focus { background-color: lighten($bg_color,5%); }
           border-radius: 3px;
         }
 
@@ -1013,16 +1028,21 @@ StScrollBar {
           }
 
           .message-icon-bin > StIcon {
-            icon-size: 32px;
+            color: darken($fg_color,20%);
+            icon-size: 16px;
+            -st-icon-style: symbolic;
           }
 
           .message-secondary-bin {
-            &:ltr { padding-left: 8px; }
-            &:rtl { padding-right: 8px; }
+            padding: 0 6px;
           }
 
-          .message-secondary-bin {
+          .message-secondary-bin > .event-time {
             color: darken($fg_color,40%);
+            font-size: 0.7em;
+            /* HACK: the label should be baseline-aligned with a 1em label,
+                     fake this with some bottom padding */
+            padding-bottom: 0.13em;
           }
 
           .message-secondary-bin > StIcon {
@@ -1030,20 +1050,22 @@ StScrollBar {
           }
 
           .message-title {
-            font-weight: bold;
-            font-size: 1.1em;
+            color: darken($fg_color,5%);
           }
 
           .message-content {
-            padding: 8px;
-            font-size: .9em;
+            color: darken($fg_color,20%);
+            padding: 10px;
           }
 
           .message-media-control {
-            padding: 3px;
+            padding: 6px;
+            color: darken($fg_color, 20%);
 
             &:last-child:ltr { padding-right: 18px; }
             &:last-child:rtl { padding-left: 18px; }
+            &:hover { color: $fg_color; }
+            &:insensitive { color: darken($fg_color,40%); }
           }
 
           .media-message-cover-icon {
