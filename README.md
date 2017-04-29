@@ -1,3 +1,5 @@
+# DEPRECATED: Use https://github.com/godlyranchdressing/Minwaita
+
 # Adwaita Compact
 Reduce ugly padding from gnome default theme, Adwaita, to make it more compact and fucking awesome.
 
